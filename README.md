@@ -80,6 +80,57 @@ Open the Jupyter notebooks and execute the cells. The API keys will be securely 
 2. **Human-Readable**: YAML’s structure makes it easy to read and edit API keys.
 3. **Integration**: Works seamlessly with existing YAML loaders in the code.
 
+---
+
+## **How to Use the Jupyter Notebooks**
+
+The Jupyter notebooks are set up to complete specific "Jobs to Be Done." These notebooks are tailored for common tasks that integrate prompts and APIs to produce useful outputs efficiently. Below are some examples of how these notebooks can be utilized:
+
+### **Examples**
+1. **Jira Release Notes Notebook**  
+   This notebook is designed to create a concise, bullet-pointed list of release notes based on an export of Jira tickets completed in a release. By using this notebook, you can automate the process of generating professional release notes from raw Jira data.
+
+2. **Article Ghost Writer Notebook**  
+   This notebook helps create high-quality blog articles. By providing an outline or key details, the notebook uses prompts to generate polished, engaging content for your audience. Ideal for content marketing or SEO-driven blog strategies.
+
+### **Using the Notebooks**
+1. **Set Up the Environment**:
+   - Ensure you have Python installed.
+   - Install the required dependencies by running:
+     ```bash
+     pip install -r requirements.txt
+     ```
+   - Launch Jupyter Notebook:
+     ```bash
+     jupyter notebook
+     ```
+
+2. **Select the Notebook**:
+   Navigate to the `notebooks/` folder and open the notebook that matches your task. Each notebook includes step-by-step instructions to guide you through the process.
+
+3. **Input Your Data**:
+   Each notebook will prompt you to input the required data. For example:
+   - For the Jira Release Notes notebook, provide an exported CSV file of Jira tickets.
+   - For the Article Ghost Writer notebook, input a topic, key points, or an outline.
+
+4. **Run the Notebook**:
+   Execute the cells sequentially. Each cell performs a specific part of the workflow, such as processing data, sending API requests, or formatting outputs.
+
+5. **Save the Results**:
+   At the end of the workflow, the notebook will generate the desired output (e.g., release notes or a draft blog article). Save the results in your preferred format.
+
+### **Learn More About Jupyter Notebooks**
+If you're new to Jupyter Notebooks, [this beginner's guide](https://realpython.com/jupyter-notebook-introduction/) provides an excellent introduction. It covers how to install Jupyter, navigate the interface, and run cells.
+
+### **Customization**
+The notebooks are modular and can be customized for your specific needs. Modify the prompts, data processing logic, or output formatting directly within the notebook to tailor it to your workflow.
+
+### **Example Notebooks**
+- **Jira Release Notes**: Automates the creation of professional release notes.
+- **Article Ghost Writer**: Produces polished, SEO-friendly blog articles.
+- **API Prompt Tester**: A general-purpose notebook for testing and refining prompts with API integrations.
+
+By using these notebooks, you can streamline repetitive tasks and focus on delivering high-quality outputs with minimal effort.
 
 ---
 

@@ -1,0 +1,6 @@
+prompts:
+  - id: paraphraser_chain_of_thought
+    file: paraphraser_prompt.yaml
+    description: >-
+      A specialized paraphraser that rewrites paragraphs with specified lexical and
+      ordering diversity using chain-of-thought reasoning.

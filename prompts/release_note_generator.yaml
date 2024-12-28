@@ -1,0 +1,92 @@
+id: create_single_sentence_release_note
+name: Create Single-Sentence Release Note
+description: >-
+  Generates a concise, single-sentence release note for a Jira issue based on its title, description, and labels. 
+  Ensures the note is clear, audience-appropriate, and adheres to provided rules.
+recommended_model:
+  provider: OpenAI
+  model: gpt-4
+category: release_notes
+tags:
+  - jira
+  - release_notes
+  - openai
+  - automation
+version: "1.0"
+author: Alex Thorpe
+last_updated: "2024-12-28"
+usage_context: >-
+  Use this prompt to create concise and audience-appropriate release notes for Jira issues, ensuring clarity and adherence 
+  to formatting and language rules.
+variables:
+  title:
+    description: The title of the Jira issue.
+    type: string
+    required: true
+  description:
+    description: A detailed description of the Jira issue.
+    type: string
+    required: true
+  labels:
+    description: The labels associated with the Jira issue.
+    type: string
+    required: true
+instructions:
+  system: You are a helpful assistant that generates concise, single-sentence release notes.
+  steps:
+    - Use the provided title, description, and labels to generate a single-sentence release note.
+    - If the issue is a bug and does not have the "global" label, include the phrase "for some systems."
+    - Adhere to all specified formatting and language rules.
+  rules:
+    - Use plain language suitable for a non-technical audience.
+    - Avoid abbreviations (e.g., replace "VI" with "View Idea").
+    - Do not hallucinate or include unverified information.
+    - Do not include names, business names, or HTML/markdown outside of <ul> elements.
+    - Return concise, valid HTML containing only <ul><li> elements.
+  format:
+    input: >-
+      Title: {{title}}
+      Description: {{description}}
+      Labels: {{labels}}
+
+      If it is a bug and not labeled with "global," include the phrase "for some systems." Ensure that notes are clear, short, and audience-appropriate.
+    output: >-
+      <ul>
+      <li><strong>{{formatted_title}}</strong> {{release_note}}</li>
+      </ul>
+example_request:
+  user_request: >-
+    Create a single-sentence release note for the following issue:
+    Title: Addressed Dropdown Transparency
+    Description: Fixed an issue with dropdown transparency in View Idea 3.
+    Labels: bug, non-global
+example_response:
+  formatted_release_note: >-
+    <ul>
+    <li><strong>View Idea 3 Dropdown Transparency Fix-</strong> We fixed a transparency issue within a dropdown on View Idea 3 that had affected some systems.</li>
+    </ul>
+notes: >-
+  This prompt ensures release notes are concise and audience-appropriate while adhering to strict formatting and language guidelines.
+full_prompt: |
+  Create a single-sentence release note for the following issue:
+  Title: {{title}}
+  Description: {{description}}
+  Labels: {{labels}}
+
+  If it is a bug and not labeled with "global," make sure to include the note "for some systems." 
+
+  The note should:
+  - Be in plain language and as short as possible.
+  - Be suitable for a non-technical audience.
+  - Avoid rephrasing or expanding on the provided statements.
+  - Include "for some systems" where applicable to avoid confusion about affected instances.
+  - Avoid abbreviations, e.g., replace "VI" with "View Idea."
+  - Avoid names, business names, and any unnecessary context.
+  - Contain valid HTML using only <ul><li> elements.
+  
+  Examples of well-written release notes:
+  - <strong>Addressed Confusion with Team Workspace Submit-</strong> We removed the active Submit button from the Team Workspace page when Submission is turned off to reduce confusion.
+  - <strong>View Idea 3 Dropdown Transparency Fix-</strong> We fixed a transparency issue within a dropdown on View Idea 3.
+  - <strong>Restored Unordered List Button-</strong> We fixed the unresponsive Unordered List button in the Initiative-level Rich Text Editor 2.0 that had affected some systems.
+  - <strong>Blue Diamond Gate Object-</strong> We updated the default Gate object to display a blue diamond emoji instead of an orange diamond.
+  - <strong>Toggle Logic for Table Tool-</strong> We updated the logic in the Whiteboard Left Toolbar to ensure that the Tables feature is displayed when enabled.

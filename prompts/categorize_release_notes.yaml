@@ -1,0 +1,87 @@
+id: categorize_release_notes
+name: Categorize Release Notes
+description: >-
+  Categorizes a list of release notes into predefined sections, with customizable categories provided as input. 
+  Returns the result in valid HTML format.
+recommended_model:
+  provider: OpenAI
+  model: gpt-4
+category: release_notes
+tags:
+  - categorization
+  - release_notes
+  - openai
+  - automation
+version: "1.0"
+author: Alex Thorpe
+last_updated: "2024-12-28"
+usage_context: >-
+  Use this prompt to organize release notes into sections based on customizable categories and present them in valid HTML format.
+variables:
+  release_notes:
+    description: A string containing the release notes to be categorized.
+    type: string
+    required: true
+  categories:
+    description: A list of categories to use for organizing the release notes (e.g., 'General bug fixes and enhancements').
+    type: list
+    required: true
+instructions:
+  system: You are a helpful assistant that organizes release notes into predefined sections.
+  steps:
+    - Categorize the provided release notes based on the given categories.
+    - Return the categorized release notes in valid HTML format, including a title for each category and a list of notes under it.
+  rules:
+    - Do not include raw HTML or markdown in the response except valid HTML elements (<p>, <strong>, <ul>, <li>).
+    - Use a consistent format for each category, starting with a bolded title followed by a list.
+    - Do not modify the release notes content; preserve the original phrasing.
+  format:
+    input: >-
+      Categories: {{categories}}
+      Release Notes: {{release_notes}}
+      
+      Organize the release notes into sections based on the provided categories and return them in valid HTML format.
+    output: >-
+      <p><strong>{{Category Title}}</strong></p>
+      <ul>
+        <li>{{Release Note 1}}</li>
+        <li>{{Release Note 2}}</li>
+      </ul>
+example_request:
+  categories:
+    - General bug fixes and enhancements
+    - Project Room
+    - Whiteboard
+    - Hackathon
+  release_notes: >-
+    <ul>
+      <li>Fixed a transparency issue within a dropdown on View Idea 3.</li>
+      <li>Updated the Whiteboard Left Toolbar to ensure the Tables feature is displayed when enabled.</li>
+    </ul>
+example_response: >-
+  <p><strong>General bug fixes and enhancements</strong></p>
+  <ul>
+    <li>Fixed a transparency issue within a dropdown on View Idea 3.</li>
+  </ul>
+  <p><strong>Whiteboard</strong></p>
+  <ul>
+    <li>Updated the Whiteboard Left Toolbar to ensure the Tables feature is displayed when enabled.</li>
+  </ul>
+notes: >-
+  This prompt enables dynamic categorization of release notes into predefined sections with full control over the categories. 
+  The response format ensures clarity and consistency, suitable for direct inclusion in product release documentation.
+full_prompt: |
+  Categorize the following release notes into sections like {{categories}}:
+
+  {{release_notes}}
+
+  Make sure to return the list in the correct HTML format:
+
+  <p><strong>Category Title</strong></p>
+  <ul>
+    <li>Release note.</li>
+    <li>Release note.</li>
+    <li>...</li>
+  </ul>
+
+  Do not include raw HTML or markdown syntax outside of the provided HTML format. Preserve the original release note content, and ensure the response is structured for clarity and usability.

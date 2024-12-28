@@ -13,6 +13,7 @@ project/
 │   └── index.yaml                    # Registry of all available prompts
 ├── notebooks/
 │   ├── manage_prompts.ipynb          # Jupyter notebook for managing and using prompts
+│   ├── example_usage.ipynb          # Example notebook demonstrating API integration
 └── README.md                         # This documentation
 ```
 
@@ -53,6 +54,32 @@ Each YAML file represents a single prompt with detailed instructions, configurab
 1. **Browse Prompts**: Review the prompts in the `prompts/` directory. Use the `index.yaml` file as a registry to find the right prompt for your task.
 2. **Edit Prompts**: Modify YAML files to adapt prompts for your specific use cases.
 3. **Load in Code**: Use the Python examples below to load and use prompts dynamically.
+
+---
+
+## **Setting Up API Keys**
+
+1. **Create a `secrets.yaml` File**  
+   Copy the example file and fill in your API keys:
+   ```bash
+   cp supporting_files/secrets.example.yaml supporting_files/secrets.yaml
+
+Edit the supporting_files/secrets.yaml file to include your actual API keys:
+```
+openai_api_key: "your-actual-api-key-here"
+another_service_api_key: "your-actual-api-key-here"
+```
+
+### Ensure Security
+The .gitignore file is configured to exclude supporting_files/secrets.yaml from being committed to version control.
+Run the Notebook
+Open the Jupyter notebooks and execute the cells. The API keys will be securely loaded from supporting_files/secrets.yaml.
+
+### **Advantages of Using YAML Secrets**
+1. **Consistency**: YAML is already used for the prompts, so keeping the secrets in YAML ensures uniformity.
+2. **Human-Readable**: YAML’s structure makes it easy to read and edit API keys.
+3. **Integration**: Works seamlessly with existing YAML loaders in the code.
+
 
 ---
 

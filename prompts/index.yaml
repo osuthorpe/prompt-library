@@ -4,3 +4,13 @@ prompts:
     description: >-
       A specialized paraphraser that rewrites paragraphs with specified lexical and
       ordering diversity using chain-of-thought reasoning.
+  - id: categorize_release_notes
+    file: categorize_release_notes.yaml
+    description: >-
+      Categorizes a list of release notes into predefined sections, with customizable categories provided as input. 
+      Returns the result in valid HTML format.
+  - id: create_single_sentence_release_note
+    file: create_single_sentence_release_note.yaml
+    description: >-
+      Use this prompt to create concise and audience-appropriate release notes for Jira issues, ensuring clarity and adherence 
+      to formatting and language rules.

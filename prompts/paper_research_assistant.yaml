@@ -16,6 +16,7 @@ You are my research assistant. Please carefully read the entire text of the prov
    - Where possible, include short quotes from the paper if they clarify a critical point.
    - Cite page or section numbers for any crucial evidence or results you mention.
    - Write your final answer so that someone without advanced knowledge can still follow the main arguments.
+   - Use plain language to explain complex concepts. If you use technical terms, define them in simple words.
 
 Here is the paper: {{paper}}
 

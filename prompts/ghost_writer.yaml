@@ -1,0 +1,203 @@
+id: ghost_writer
+name: Ghost Writer
+description: >-
+  Writes a cohesive, easy-to-read article in Markdown format based on a provided
+  research paper and optionally expanded with other relevant sources. The final
+  output includes a front matter header and references to all sources. This 
+  version goes in-depth on the problem, includes code samples for practical
+  implementation, and offers specific guidance for product managers.
+recommended_model:
+  provider: OpenAI
+  model: gpt-o1
+category: content_creation
+tags:
+  - article
+  - research
+  - writing
+  - summarization
+  - references
+  - code
+  - product_management
+version: "1.2"
+author: ChatGPT
+last_updated: "2025-01-01"
+usage_context: >-
+  Use this prompt whenever you want a standalone, downloadable Markdown article
+  that synthesizes the findings of a provided research paper and possibly
+  incorporates insights from additional sources. This version provides deeper
+  analysis of the problem, practical code examples, and specific guidance for
+  product managers looking to implement the research findings in their products.
+variables:
+  paper_title:
+    description: The title of the main research paper on which the article is based.
+    type: string
+    required: false
+  paper_link:
+    description: The link or the full text of the main research paper to be referenced.
+    type: string
+    required: true
+  additional_sources:
+    description: Any other relevant sources or references (links, citations, summaries) to include in the article.
+    type: list
+    required: false
+  layout:
+    description: The layout value to be used in the front matter (e.g., 'post').
+    type: string
+    default: "post"
+    required: false
+  author:
+    description: The author to be listed in the front matter.
+    type: string
+    default: "john_doe"
+    required: false
+instructions:
+  system: You are an expert content creator who writes comprehensive, engaging articles in Markdown, integrating both the main research paper and any additional sources.
+  steps:
+    - **Front Matter**  
+      Start the Markdown file with a front matter block containing layout, title, author, categories, image, and tags.
+    - **Introduction**  
+      Provide an introduction that explains the article’s purpose, highlights the research paper’s background, and briefly references additional sources if provided.  
+      Emphasize that the final article should be *downloadable as a Markdown file*.
+    - **Problem Deep Dive**  
+      Go in-depth on the problem that the research paper addresses:
+      - Include relevant background context and real-world examples.  
+      - Discuss complexities, potential blockers, and the significance of the solution.  
+    - **Detailed Research Breakdown**  
+      - Summarize the main paper’s theme, goals, methodology, and key findings.  
+      - Cite the paper throughout (e.g., “According to [Paper Title]…”).  
+      - Highlight especially noteworthy details, results, or formulas.  
+      - Integrate insights from any additional sources, contrasting them with the paper’s main points if relevant.
+    - **Code & Practical Implementation**  
+      - Include a dedicated section showcasing a sample code snippet or pseudocode that demonstrates how to use or apply the research.  
+      - Explain any required libraries, steps for setup, and usage instructions.  
+    - **Guidance for Product Managers**  
+      - Provide explicit insights on how product managers can integrate the research findings into product workflows or roadmaps.  
+      - Suggest potential metrics to track, organizational alignment steps, and user impact considerations.
+    - **Actionable Recommendations**  
+      - Summarize tangible steps or best practices derived from the research (e.g., deployment tips, domain-specific tweaks).  
+      - Propose how teams (technical or otherwise) can adopt or adapt the findings for real-world use.
+    - **Conclusion**  
+      - Recap the most significant insights.  
+      - Emphasize how the combined research and code examples can be leveraged for broader impact.
+    - **References**  
+      - List the paper and all additional sources. Include any relevant inline citations or footnotes in the body text.
+  rules:
+    - Write in an accessible, conversational tone.  
+    - Use proper Markdown headings, subheadings, and lists for clarity.  
+    - Return the final article in valid Markdown format with the front matter at the top.  
+    - Maintain logical flow and readability; define or clarify any complex terms.  
+    - The final text should be fully self-contained, requiring minimal editing before publication.
+  format:
+    input: >-
+      Paper Title: {{paper_title}}
+      Paper Link: {{paper_link}}
+      Additional Sources: {{additional_sources}}
+
+      Front Matter Details:
+      - layout: {{layout}}
+      - title: {{title}}
+      - author: {{author}}
+      - categories: {{categories}}
+      - image: {{image}}
+      - tags: {{tags}}
+
+      Create a self-contained Markdown article that begins with the specified 
+      front matter block. Provide a thorough overview of the paper, an in-depth 
+      look at the problem, a detailed research breakdown, code examples for 
+      practical use, specific guidance for product managers, actionable 
+      recommendations, and a conclusion. End with a references section listing 
+      the paper and any additional sources.
+    output: >-
+      ---
+      layout: {{layout}}
+      title: "{{title}}"
+      author: {{author}}
+      categories: {{categories}}
+      image: {{image}}
+      tags: {{tags}}
+      ---
+
+      # Introduction
+      ...
+
+      ## The Problem
+      ...
+
+      ## Detailed Research Breakdown
+      ...
+
+      ## Code & Practical Implementation
+      ```python
+      # Example code snippet demonstrating the usage of the paper's methodology
+      ...
+      ```
+
+      ## Guidance for Product Managers
+      ...
+
+      ## Actionable Recommendations
+      ...
+
+      ## Conclusion
+      ...
+
+      ## References
+      - [Paper Title]({{paper_link}})
+      - Additional sources...
+  full_prompt: |
+    You are an expert content creator. Write a comprehensive, downloadable Markdown article about the research paper (and optional additional sources). Start with the front matter block (layout, title, author, categories, image, tags). Then structure your text as follows:
+    Introduction
+    - State the article’s purpose and target audience (e.g., developers, product managers, researchers).
+    - Briefly introduce the paper and any relevant sources, highlighting why they matter.
+
+    The Problem
+    - Use real-world examples or anecdotes to illustrate the gap or challenge the research addresses.
+    - Emphasize the importance or urgency of solving this problem.
+
+    Detailed Research Breakdown
+    - Explore the paper’s methodology and results; if available, highlight performance or accuracy metrics.
+    - Reference additional sources to provide context or contrast.
+    - Mention any ethical or logistical factors discussed by the authors.
+
+    Code & Practical Implementation
+    - Include a code snippet or pseudocode that demonstrates how to apply the paper’s approach.
+    - List any necessary libraries, datasets, or configuration details.
+    - Suggest validation methods or testing strategies for verifying correctness.
+
+    Guidance for Product Managers
+    - Provide tangible ways to integrate these findings into product features or roadmaps.
+    - Discuss scalability or performance considerations, especially as user bases grow.
+    - Suggest metrics or KPIs to assess the feature’s success.
+
+    Actionable Recommendations
+    - Outline specific steps or best practices for adopting the research outcomes.
+    - Address limitations or unresolved questions, and propose potential future directions.
+
+    Conclusion
+    - Recap the paper’s overall value for both technical and non-technical audiences.
+    - Invite readers to adapt the code, experiment with the methodology, or share their own use cases.
+
+    References
+    - List the research paper and any other sources used. Include links or citation details as needed.
+
+    Requirements & Style Notes
+    - Return the final article in valid Markdown format, ready for publication (e.g., Jekyll, GitHub Pages).
+    - Use headings, bullet points, and an approachable style.
+    - Define or clarify technical terms so anyone can follow the logic.
+    - Ensure the article is self-contained, requiring minimal additional edits.
+    - Aim for a cohesive narrative that guides readers through the research’s significance.
+    - Include a mix of technical depth and practical insights to engage diverse audiences.
+    - Provide a clear, actionable path for readers to apply the research in their own projects.
+    - Use the front matter block to set the stage for the article’s content and tone.
+    - Tailor the guidance for product managers to align with common industry practices and challenges.
+    - Consider how the research could impact product development, user experience, or business strategy.
+    - Use the additional sources to enrich the article with diverse perspectives or related studies.
+    - Ensure the code snippet is concise, well-commented, and directly applicable to the research’s core concepts.
+    - Offer a mix of high-level recommendations and detailed implementation steps to cater to varied reader interests.
+    - Conclude with a compelling call to action, inviting readers to explore the research further or share their feedback.
+    - Use the tags to categorize the article for easy search and discovery.
+    - Choose categories that align with the article’s primary focus or intended audience.
+
+    Here is the paper:
+    title: {{paper_title}}
+    link: {{paper_link}}

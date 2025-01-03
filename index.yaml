@@ -7,6 +7,10 @@ prompts:
     file: create_single_sentence_release_note.yaml
     description: >-
         Generates a concise, single-sentence release note for a Jira issue based on its title, description, and labels. Ensures clarity and adherence to formatting rules. model: openai/gpt-4
+  - id: general_counsel_bot
+    file: general_council_bot.yaml
+    description: >-
+        Acts as a central agent to recommend and execute tools based on the user's task. It uses a registry of tools for efficient delegation. model: openai/gpt-4
   - id: ghost_writer
     file: ghost_writer.yaml
     description: >-

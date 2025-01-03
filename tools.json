@@ -1,0 +1,10 @@
+[
+{"name": "categorize_release_notes","description": "","parameters": {"type": "object", "properties": {}}},
+{"name": "create_single_sentence_release_note","description": "","parameters": {"type": "object", "properties": {}}},
+{"name": "general_counsel_bot","description": "","parameters": {"type": "object", "properties": {}}},
+{"name": "ghost_writer","description": "","parameters": {"type": "object", "properties": {}}},
+{"name": "general_counsel_bot","description": "","parameters": {"type": "object", "properties": {}}},
+{"name": "meeting_summaries","description": "","parameters": {"type": "object", "properties": {}}},
+{"name": "analyze_research_paper","description": "","parameters": {"type": "object", "properties": {}}},
+{"name": "paraphraser_chain_of_thought","description": "","parameters": {"type": "object", "properties": {}}}
+]

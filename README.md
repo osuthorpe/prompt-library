@@ -1,7 +1,7 @@
 
-# Prompt Repository
+# Prompt Library
 
-Welcome to the Prompt Repository! This repository is designed to store and manage reusable prompts for novel tasks. Each prompt is saved in a YAML file, allowing for easy reading, editing, and integration into various tools and workflows.
+Welcome to the Prompt Library! This repository is designed to store and manage reusable prompts for novel tasks. Each prompt is saved in a YAML file, allowing for easy reading, editing, and integration into various tools and workflows.
 
 ## **Repository Structure**
 
@@ -33,18 +33,11 @@ Each YAML file represents a single prompt with detailed instructions, configurab
 5. **`category`**: The type of task the prompt supports (e.g., text processing).
 6. **`tags`**: Keywords for easy classification and search.
 7. **`variables`**: Configurable inputs that allow customization of the prompt (e.g., percentages for lexical diversity).
-8. **`instructions`**:
-    - **`system`**: A brief summary of the task.
-    - **`steps`**: Actions for the system to perform.
-    - **`rules`**: Constraints or guidelines for ensuring the output meets expectations.
-    - **`format`**: Specific templates for structuring responses.
-9. **`example_request`**: Example input to demonstrate prompt usage.
-10. **`example_response`**: Sample output for reference.
-11. **`notes`**: Additional guidance or context for the prompt.
-12. **`full_prompt`**: A complete, copy-paste-ready version of the prompt for direct use.
+8. **`notes`**: Additional guidance or context for the prompt.
+9. **`prompt`**: A complete, copy-paste-ready version of the prompt for direct use.
 
 ### **Using the YAML Files**
-- **Manual Use**: Copy the `full_prompt` field and paste it directly into a language model interface (e.g., GPT-4o).
+- **Manual Use**: Copy the `prompt` field and paste it directly into a language model interface (e.g., GPT-4o).
 - **Automated Systems**: Parse the YAML files programmatically to load and use prompts dynamically in your workflow.
 
 ---

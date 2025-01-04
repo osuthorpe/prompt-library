@@ -92,7 +92,9 @@ done
 
 # Remove trailing comma from the last tool and close the JSON array
 sed -i '' '$ s/,$//' "$OUTPUT_FILE" # For macOS. Use 'sed -i' without quotes on Linux
-echo "]" >> "$OUTPUT_FILE"
+echo "]" >> $OUTPUT_FILE
+jq . $OUTPUT_FILE > formatted_tools.json
+mv formatted_tools.json $OUTPUT_FILE
 
 # Finish the progress bar and indicate completion
 echo

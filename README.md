@@ -6,14 +6,16 @@ Welcome to the Prompt Library! This repository is designed to store and manage r
 ## **Repository Structure**
 
 ```
-project/
+promp_library/
 │
 ├── prompts/
 │   ├── paraphraser_prompt.yaml       # A specialized paraphraser prompt
 │   └── index.yaml                    # Registry of all available prompts
 ├── notebooks/
 │   ├── manage_prompts.ipynb          # Jupyter notebook for managing and using prompts
-│   ├── example_usage.ipynb          # Example notebook demonstrating API integration
+│   ├── example_usage.ipynb           # Example notebook demonstrating API integration
+├── supporting_files/
+│   ├── secrets.example.yaml          # API keys
 └── README.md                         # This documentation
 ```
 

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Directory containing prompt YAML files
-PROMPT_DIR="prompts/"
-OUTPUT_FILE="tools.json"
+PROMPT_DIR="./prompts/"
+OUTPUT_FILE="./supporting_files/tools.json"
 
 # Check if yq is installed
 if ! command -v yq &> /dev/null

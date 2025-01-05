@@ -1,2 +1,2 @@
-# Ignore secrets.yaml
-supporting_files/secrets.yaml
+# Ignore .env files
+.env

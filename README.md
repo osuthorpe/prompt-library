@@ -131,6 +131,23 @@ By using these notebooks, you can streamline repetitive tasks and focus on deliv
 
 ## **Python Usage Examples**
 
+Setup a virtual enviornment
+
+```bash
+$ python3 -m venv venv
+```
+
+Start the virtual enviornment
+
+```bash
+$ source venv/bin/activate
+```
+
+Install dependencies
+```bash
+$ pip install -r requirements.txt
+```
+
 ### **Load a Prompt**
 ```python
 import yaml

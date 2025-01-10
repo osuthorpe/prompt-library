@@ -13,4 +13,4 @@ if not pinecone_api_key:
 pc = Pinecone(api_key=pinecone_api_key)
 
 # Target the index where you stored the vector embeddings
-pc.delete_index("example-index")
+pc.delete_index("idea-index")

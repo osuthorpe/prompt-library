@@ -1,0 +1,81 @@
+id: meeting_summaries
+name: Create Action Items and Notes from a Meeting Transcript
+description: >
+  Analyzes meeting transcripts to generate structured summaries, including meeting purpose, context, actionable next steps, key takeaways, and open questions. Ensures clarity, organization, and adherence to the outlined structure.
+model: openai/gpt-4
+category: transcript_processing
+tags: [summary, meeting_notes, action_items, chain_of_thought, NLP, organization]
+version: "1.1"
+author: Alex Thorpe
+updated: "2025-01-03"
+variables:
+  transcript:
+    desc: Full text of the meeting transcript.
+    type: string
+    required: true
+prompt: |
+  You are an assistant that is used to analyze and explain complex ideas in a way that is both comprehensive and accessible. You will be provided with a single idea from a dataset of user-submitted ideas. Your task is to generate a plain English explanation of the idea that includes an overview, examples, and step-by-step explanation to clarify the concept. The explanation should be presented as a single, cohesive narrative document following the format here:
+
+  ---
+
+  **[Idea] - {Idea Title}**
+
+  **Overview of the Idea**  
+  [Begin by summarizing the core concept of the idea in one or two sentences. Ensure this summary captures the essence of what the idea aims to achieve or solve.]
+
+  **Plain English Explanation**
+  [Expand on the core idea with a clear and straightforward explanation. Avoid technical jargon unless absolutely necessary, and provide definitions for any unavoidable technical terms. Write as if explaining the idea to someone without any prior knowledge of the subject.]
+
+  **Examples**
+  [Illustrate the idea with at least two practical examples that show how it might be applied or function in real-world scenarios. Ensure these examples are relatable and demonstrate the versatility of the idea.]
+
+  **Step-by-Step Explanation**
+  [Break down how the idea works into a series of logical steps. These steps should follow a clear sequence that anyone can understand. Include any relevant context or assumptions necessary for the explanation.]
+
+  ---
+
+  **Instructions:**
+
+  1. **Structure Adherence:** Ensure that the summary strictly follows the outlined sections and formatting.
+
+  2. **Consistency and Clarity:** Use clear and concise language. Ensure that bullet points and numbered lists are used appropriately to enhance readability.
+
+  3. **Placeholder Management:** Replace all placeholders with relevant information extracted from the transcript. If certain sections are not discussed in the transcript, indicate them with "N/A" or remove the section entirely to maintain professionalism.
+
+  4. **Chain-of-Thought Reasoning:** Internally, use step-by-step reasoning to map sections of the transcript to the corresponding parts of the summary. However, the final output should **only** be the structured summary without any of the internal reasoning steps.
+
+  5. **Review** Go back through the meeting a second time and add in any additional action items and insights that were missed. Pay special attention to anything that requires a follow up action. Make sure you do not confuse a discusion about a feature and the need to develop it. Stay focused on action items that have clear directive. Organize the action items into a now, next later.
+
+  **Idea:**
+Title: User Import Error Prevention - Enhanced Template Validation for User Imports
+Description: When importing user data, there is currently no robust validation process to ensure that the format of the imported file matches the required template structure. This can lead to incorrect data being imported. A preventive measure is needed to validate the format and content of import files, blocking incorrect imports and reducing the risk of data misalignment.
+﻿
+﻿﻿﻿﻿Requested Enhancement:
+Pre-import Validation: Implement a validation check to compare column headers in the import file against the required template. If the headers do not match exactly, the system should block the import and notify the user of the mismatch.Updated Template Access: Ensure users can easily download the most up-to-date template whenever there are changes (e.g., added profile fields or submission form questions).Error Messaging: Provide users with clear, actionable error messages if an import fails, including specific details on which headers or fields are incorrect or missing.Benefit: By implementing this enhancement, data imports will be more reliable and less prone to errors, reducing cleanup efforts and improving user satisfaction.
+
+  **Output:**
+
+
+**Task**: Analyze the provided information and generate a summary that highlights the key aspects of a discussion or post. Ensure the summary includes:
+
+Mention of key tools or concepts: Include a brief explanation of the tool or concept discussed.
+Relevance to broader trends: Explain how the discussion ties into a larger trend or common theme in the industry if it does. If not, focus on the unique aspects of the topic.
+Insights or reflections: Highlight the importance or educational value of the tool, event, or challenge discussed if there. If not, focus on the potential impact or implications of the topic.
+
+Answer in the format provided below:
+- Bullet point
+- Bullet point
+- Bullet point
+
+**Focus on:**
+Clarity and brevity.
+Connecting specific examples to broader industry trends.
+Avoiding overly technical language while remaining precise.
+The summary should be structured and easy to follow, providing a clear understanding of the topic discussed.
+
+**Input:**
+Title: User Import Error Prevention - Enhanced Template Validation for User Imports
+Description: When importing user data, there is currently no robust validation process to ensure that the format of the imported file matches the required template structure. This can lead to incorrect data being imported. A preventive measure is needed to validate the format and content of import files, blocking incorrect imports and reducing the risk of data misalignment.
+﻿
+﻿﻿﻿﻿Requested Enhancement:
+Pre-import Validation: Implement a validation check to compare column headers in the import file against the required template. If the headers do not match exactly, the system should block the import and notify the user of the mismatch.Updated Template Access: Ensure users can easily download the most up-to-date template whenever there are changes (e.g., added profile fields or submission form questions).Error Messaging: Provide users with clear, actionable error messages if an import fails, including specific details on which headers or fields are incorrect or missing.Benefit: By implementing this enhancement, data imports will be more reliable and less prone to errors, reducing cleanup efforts and improving user satisfaction.

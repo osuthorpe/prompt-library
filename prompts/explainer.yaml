@@ -79,3 +79,47 @@ Description: When importing user data, there is currently no robust validation p
 ﻿
 ﻿﻿﻿﻿Requested Enhancement:
 Pre-import Validation: Implement a validation check to compare column headers in the import file against the required template. If the headers do not match exactly, the system should block the import and notify the user of the mismatch.Updated Template Access: Ensure users can easily download the most up-to-date template whenever there are changes (e.g., added profile fields or submission form questions).Error Messaging: Provide users with clear, actionable error messages if an import fails, including specific details on which headers or fields are incorrect or missing.Benefit: By implementing this enhancement, data imports will be more reliable and less prone to errors, reducing cleanup efforts and improving user satisfaction.
+
+from openai import OpenAI
+client = OpenAI()
+
+response = client.chat.completions.create(
+  model="gpt-4o",
+  messages=[
+    {
+      "role": "system",
+      "content": [
+        {
+          "type": "text",
+          "text": "You are an assistant tasked with analyzing and explaining complex ideas in an accessible manner. You will receive a single idea from a dataset of user-submitted ideas and need to generate a plain English explanation. This explanation should include an overview, provide examples, and offer step-by-step clarity on the concept, presented as a cohesive narrative document.\n\n# Guidelines\n\n- **Consistency and Clarity:** \n  - Use clear, concise language.\n  - Utilize bullet points and numbered lists for readability, avoiding technical jargon while remaining precise.\n  - Ensure the summary is structured and easy to follow, providing a clear understanding of the idea.\n\n- **Placeholder Management:** \n  - Replace placeholders with relevant information.\n  - Remove unnecessary bullets to maintain professionalism.\n\n- **Chain-of-Thought Reasoning:** \n  - Internally use step-by-step reasoning to align sections of the idea with the output.\n  - The final output should be structured without displaying the internal reasoning.\n\n- **Review:** \n  - Revise the idea, ensuring no context is missed.\n\n- **Output Restrictions:** \n  - Only include the parts outlined in the output example.\n\n# Steps\n\n1. Analyze the provided idea.\n2. Generate a summary emphasizing key aspects.\n3. Review and refine for clarity and completeness.\n\n# Output Format\n\n- **Overview:** 1-2 sentence summary of the idea.\n- **Key Features:**\n  - Feature 1\n  - Feature 2\n  - [...]\n- **Additional Context:** \n  - Bullet 1\n  - Bullet 2\n  - [...]\n"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "Title: Limit Admins by Total Purchased\nDescription:\n\"\"\"\nThe majority of clients are on some sort of Admin licensing model, and going forward all clients will have some sort of restrictions on the number of admins they have licensing for.\n\nCurrently Admins have the ability to add as many new admins into their system as they want without any warning, notification, or restriction that they are out of compliance with their licensing.\n\nWe need to have functionality built into the system that restricts clients from adding new admins, ideally the platform would have some capability that Brightidea could set the number of Admins the client was licensed for and then if a client tried to add admins over their licensed amount the platform would restrict them from doing so and provide some messaging to contact thier CSM or deactivate existing admin(s).\n﻿\n\"\"\""
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "- **Overview:** The idea proposes implementing a system feature to restrict the number of administrators (admins) a client can have, in accordance with their licensed limit, to ensure compliance with licensing agreements.\n\n- **Key Features:**\n  - Limit the number of admins that clients can add, based on their purchased licenses.\n  - Automatically restrict clients from exceeding their licensed number of admins.\n  - Provide notifications or messages to clients when they attempt to exceed their admin limit.\n\n- **Additional Context:**\n  - Currently, clients can add unlimited admins without system checks or restrictions, risking non-compliance.\n  - The proposed feature would include an option for clients to contact their Customer Success Manager (CSM) for assistance if they need more admin licenses.\n  - This functionality aims to ensure that all clients adhere to their specific admin licensing agreements while maintaining flexibility for necessary administrative adjustments."
+        }
+      ]
+    }
+  ],
+  response_format={
+    "type": "text"
+  },
+  temperature=1,
+  max_completion_tokens=2048,
+  top_p=1,
+  frequency_penalty=0,
+  presence_penalty=0
+)

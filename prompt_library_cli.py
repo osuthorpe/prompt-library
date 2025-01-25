@@ -112,8 +112,18 @@ def main():
                 print(f"An error occurred while processing your request: {str(e)}\n")
             continue
 
+        # Display the matched prompt and its required variables
         print(f"\nMatched Prompt: {prompt_data['name']}")
         print(f"Description: {prompt_data['description']}\n")
+        print("This prompt requires the following inputs:")
+        for var_name, var_details in prompt_data["variables"].items():
+            print(f"- {var_name} ({var_details['type']}): {var_details['desc']}")
+        
+        # Ask for confirmation to run the prompt
+        confirmation = input("\nDo you want to run this model? (yes/no): ").strip().lower()
+        if confirmation not in {"yes", "y"}:
+            print("Model execution cancelled. Returning to main menu.\n")
+            continue
 
         # Collect required inputs
         inputs = collect_inputs(prompt_data)
@@ -122,7 +132,6 @@ def main():
         print("\nProcessing your request...\n")
         response = execute_prompt(prompt_data, inputs)
         print(f"Response:\n{response}\n")
-
 
 if __name__ == "__main__":
     main()

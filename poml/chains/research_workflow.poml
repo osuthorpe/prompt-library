@@ -1,0 +1,220 @@
+---
+name: Research Workflow Chain
+description: Multi-step research analysis workflow combining multiple prompts
+version: 1.0.0
+author: Alex Thorpe
+type: chain
+tags:
+  - workflow
+  - research
+  - multi-step
+---
+
+# Research Analysis Workflow
+
+A comprehensive chain that processes research papers through multiple analysis stages.
+
+## Chain Definition
+
+@chain ResearchAnalysisWorkflow
+  steps:
+    - name: initial_analysis
+      prompt: prompts/paper_research_assistant
+      inputs:
+        paper: "{{input.paper_url}}"
+        paper_title: "{{input.title}}"
+      outputs:
+        - analysis_summary
+        - key_findings
+        - methodology
+    
+    - name: generate_article
+      prompt: prompts/ghost_writer
+      inputs:
+        paper_title: "{{steps.initial_analysis.outputs.paper_title}}"
+        paper_link: "{{input.paper_url}}"
+        additional_sources: "{{steps.initial_analysis.outputs.references}}"
+      outputs:
+        - markdown_article
+    
+    - name: create_explanation
+      prompt: prompts/idea_explainer
+      inputs:
+        idea_title: "{{steps.initial_analysis.outputs.paper_title}}"
+        idea_description: "{{steps.initial_analysis.outputs.key_findings}}"
+        context: "{{steps.initial_analysis.outputs.methodology}}"
+      outputs:
+        - plain_english_explanation
+    
+    - name: generate_release_note
+      prompt: prompts/create_single_sentence_release_note
+      inputs:
+        title: "Research Update: {{steps.initial_analysis.outputs.paper_title}}"
+        description: "{{steps.initial_analysis.outputs.analysis_summary}}"
+        labels: "research, update"
+      outputs:
+        - release_note_html
+
+## Input Schema
+
+@schema ChainInput
+{
+  "paper_url": {
+    "type": "string",
+    "required": true,
+    "description": "URL or path to research paper"
+  },
+  "title": {
+    "type": "string",
+    "required": false,
+    "description": "Optional paper title"
+  },
+  "output_format": {
+    "type": "string",
+    "enum": ["full", "summary", "article_only"],
+    "default": "full"
+  }
+}
+
+## Output Schema
+
+@schema ChainOutput
+{
+  "analysis": {
+    "summary": "string",
+    "findings": "array",
+    "methodology": "object",
+    "implementation_guide": "string"
+  },
+  "article": {
+    "markdown": "string",
+    "metadata": "object"
+  },
+  "explanation": {
+    "overview": "string",
+    "examples": "array",
+    "steps": "array"
+  },
+  "release_note": {
+    "html": "string",
+    "plain_text": "string"
+  }
+}
+
+## Execution Flow
+
+```mermaid
+graph TD
+    A[Input: Research Paper] --> B[Initial Analysis]
+    B --> C{Analysis Complete?}
+    C -->|Yes| D[Generate Article]
+    C -->|No| B
+    D --> E[Create Explanation]
+    B --> E
+    E --> F[Generate Release Note]
+    D --> G[Compile Outputs]
+    E --> G
+    F --> G
+    G --> H[Return Results]
+```
+
+## Error Handling
+
+@errorHandler
+  on_step_failure:
+    strategy: retry_with_backoff
+    max_retries: 3
+    backoff_multiplier: 2
+  
+  on_chain_failure:
+    strategy: partial_results
+    return_successful_steps: true
+    include_error_details: true
+
+## Conditional Logic
+
+@condition output_format_router
+  if: "{{input.output_format}} == 'summary'"
+  then:
+    skip_steps: ["generate_article"]
+  
+  if: "{{input.output_format}} == 'article_only'"
+  then:
+    skip_steps: ["create_explanation", "generate_release_note"]
+
+## Parallel Execution
+
+@parallel explanation_and_article
+  branches:
+    - generate_article
+    - create_explanation
+  wait_for_all: false
+  timeout: 60000
+
+## State Management
+
+@state
+  persistent:
+    - analysis_cache
+    - generated_content
+  
+  temporary:
+    - processing_flags
+    - step_timings
+
+## Hooks
+
+@hook pre_execution
+  validate_input_paper()
+  check_rate_limits()
+  initialize_cache()
+
+@hook post_execution
+  save_to_cache()
+  log_metrics()
+  cleanup_temp_data()
+
+@hook on_step_complete
+  log_step_result()
+  update_progress()
+  checkpoint_state()
+
+## Usage Example
+
+```python
+from poml import ChainExecutor
+
+# Initialize chain
+executor = ChainExecutor("chains/research_workflow")
+
+# Execute with input
+result = executor.run({
+    "paper_url": "https://arxiv.org/pdf/...",
+    "title": "Optional Paper Title",
+    "output_format": "full"
+})
+
+# Access outputs
+print(result.analysis.summary)
+print(result.article.markdown)
+print(result.explanation.overview)
+```
+
+## Configuration
+
+@config
+  execution:
+    timeout: 300000  # 5 minutes
+    max_parallel: 2
+    cache_results: true
+    cache_ttl: 86400  # 24 hours
+  
+  monitoring:
+    track_metrics: true
+    log_level: "info"
+    alert_on_failure: true
+  
+  optimization:
+    batch_size: 1
+    prefetch_prompts: true
+    reuse_connections: true

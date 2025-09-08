@@ -1,211 +1,185 @@
+# POML Prompt Library
 
-# Prompt Library
+A comprehensive, shareable prompt library using Microsoft's Prompt Optimization Markup Language (POML) format.
 
-Welcome to the Prompt Library! This repository is designed to store and manage reusable prompts for novel tasks. Each prompt is saved in a YAML file, allowing for easy reading, editing, and integration into various tools and workflows.
+## Overview
 
-## **Repository Structure**
+This repository contains a collection of production-ready AI prompts formatted in POML for easy maintenance, sharing, and integration with various AI platforms including Azure AI Studio, Semantic Kernel, LangChain, and Prompt Flow.
+
+## Structure
 
 ```
-promp_library/
-│
-├── prompts/
-│   ├── paraphraser_prompt.yaml       # A specialized paraphraser prompt
-│   └── index.yaml                    # Registry of all available prompts
-├── notebooks/
-│   ├── manage_prompts.ipynb          # Jupyter notebook for managing and using prompts
-│   ├── example_usage.ipynb           # Example notebook demonstrating API integration
-├── supporting_files/
-│   ├── secrets.example.yaml          # API keys
-└── README.md                         # This documentation
+prompt-library/
+├── poml/                   # POML-formatted prompt library
+│   ├── prompts/           # Individual prompt definitions
+│   ├── templates/         # Reusable prompt templates
+│   ├── functions/         # Shared processing functions
+│   ├── chains/            # Multi-step workflow chains
+│   ├── configs/           # Configuration files
+│   └── poml.config.json   # Main library configuration
+└── legacy/                # Original prompt library (deprecated)
 ```
 
----
+## Features
 
-## **How to Read and Use the YAML Files**
+- **Standardized Format**: All prompts use POML format for consistency
+- **Modular Design**: Reusable functions and templates
+- **Chain Workflows**: Complex multi-step prompt chains
+- **Easy Sharing**: Export/import in multiple formats
+- **Platform Compatible**: Works with major AI frameworks
+- **Version Controlled**: Each prompt includes versioning
 
-Each YAML file represents a single prompt with detailed instructions, configurable variables, and examples. Below is a guide to understanding its structure:
+## Available Prompts
 
-### **Key Sections**
-1. **`id`**: Unique identifier for the prompt. Use this for referencing in systems.
-2. **`name`**: The name of the prompt, summarizing its purpose.
-3. **`description`**: Explains what the prompt is designed to do.
-4. **`recommended_model`**:
-    - **`provider`**: Which company to use for best results.
-    - **`model`**: Which model to use for best results.
-5. **`category`**: The type of task the prompt supports (e.g., text processing).
-6. **`tags`**: Keywords for easy classification and search.
-7. **`variables`**: Configurable inputs that allow customization of the prompt (e.g., percentages for lexical diversity).
-8. **`notes`**: Additional guidance or context for the prompt.
-9. **`prompt`**: A complete, copy-paste-ready version of the prompt for direct use.
+### Release Notes & Documentation
+- `categorize_release_notes.poml` - Categorize release notes into sections
+- `create_single_sentence_release_note.poml` - Generate concise release notes
 
-### **Using the YAML Files**
-- **Manual Use**: Copy the `prompt` field and paste it directly into a language model interface (e.g., GPT-4o).
-- **Automated Systems**: Parse the YAML files programmatically to load and use prompts dynamically in your workflow.
+### Content Creation
+- `ghost_writer.poml` - Transform research papers into articles
+- `idea_explainer.poml` - Explain complex ideas in plain English
+- `paraphraser.poml` - Advanced text paraphrasing with diversity control
 
----
+### Research & Analysis
+- `paper_research_assistant.poml` - Analyze and replicate research papers
+- `meeting_summary.poml` - Extract action items from meeting transcripts
 
-## **How to Use This Repository**
+## Quick Start
 
-1. **Browse Prompts**: Review the prompts in the `prompts/` directory. Use the `index.yaml` file as a registry to find the right prompt for your task.
-2. **Edit Prompts**: Modify YAML files to adapt prompts for your specific use cases.
-3. **Load in Code**: Use the Python examples below to load and use prompts dynamically.
+### Using a Single Prompt
 
----
-
-## **Setting Up API Keys**
-
-1. **Create a `secrets.yaml` File**  
-   Copy the example file and fill in your API keys:
-   ```bash
-   cp supporting_files/secrets.example.yaml supporting_files/secrets.yaml
-
-Edit the supporting_files/secrets.yaml file to include your actual API keys:
-```
-openai_api_key: "your-actual-api-key-here"
-another_service_api_key: "your-actual-api-key-here"
-```
-
-### Ensure Security
-The .gitignore file is configured to exclude supporting_files/secrets.yaml from being committed to version control.
-Run the Notebook
-Open the Jupyter notebooks and execute the cells. The API keys will be securely loaded from supporting_files/secrets.yaml.
-
-### **Advantages of Using YAML Secrets**
-1. **Consistency**: YAML is already used for the prompts, so keeping the secrets in YAML ensures uniformity.
-2. **Human-Readable**: YAML’s structure makes it easy to read and edit API keys.
-3. **Integration**: Works seamlessly with existing YAML loaders in the code.
-
----
-
-## **How to Use the Jupyter Notebooks**
-
-The Jupyter notebooks are set up to complete specific "Jobs to Be Done." These notebooks are tailored for common tasks that integrate prompts and APIs to produce useful outputs efficiently. Below are some examples of how these notebooks can be utilized:
-
-### **Examples**
-1. **Jira Release Notes Notebook**  
-   This notebook is designed to create a concise, bullet-pointed list of release notes based on an export of Jira tickets completed in a release. By using this notebook, you can automate the process of generating professional release notes from raw Jira data.
-
-2. **Article Ghost Writer Notebook**  
-   This notebook helps create high-quality blog articles. By providing an outline or key details, the notebook uses prompts to generate polished, engaging content for your audience. Ideal for content marketing or SEO-driven blog strategies.
-
-### **Using the Notebooks**
-1. **Set Up the Environment**:
-   - Ensure you have Python installed.
-   - Install the required dependencies by running:
-     ```bash
-     pip install -r requirements.txt
-     ```
-   - Launch Jupyter Notebook:
-     ```bash
-     jupyter notebook
-     ```
-
-2. **Select the Notebook**:
-   Navigate to the `notebooks/` folder and open the notebook that matches your task. Each notebook includes step-by-step instructions to guide you through the process.
-
-3. **Input Your Data**:
-   Each notebook will prompt you to input the required data. For example:
-   - For the Jira Release Notes notebook, provide an exported CSV file of Jira tickets.
-   - For the Article Ghost Writer notebook, input a topic, key points, or an outline.
-
-4. **Run the Notebook**:
-   Execute the cells sequentially. Each cell performs a specific part of the workflow, such as processing data, sending API requests, or formatting outputs.
-
-5. **Save the Results**:
-   At the end of the workflow, the notebook will generate the desired output (e.g., release notes or a draft blog article). Save the results in your preferred format.
-
-### **Learn More About Jupyter Notebooks**
-If you're new to Jupyter Notebooks, [this beginner's guide](https://realpython.com/jupyter-notebook-introduction/) provides an excellent introduction. It covers how to install Jupyter, navigate the interface, and run cells.
-
-### **Customization**
-The notebooks are modular and can be customized for your specific needs. Modify the prompts, data processing logic, or output formatting directly within the notebook to tailor it to your workflow.
-
-### **Example Notebooks**
-- **Jira Release Notes**: Automates the creation of professional release notes.
-- **Article Ghost Writer**: Produces polished, SEO-friendly blog articles.
-- **API Prompt Tester**: A general-purpose notebook for testing and refining prompts with API integrations.
-
-By using these notebooks, you can streamline repetitive tasks and focus on delivering high-quality outputs with minimal effort.
-
----
-
-## **Python Usage Examples**
-
-Setup a virtual enviornment
-
-```bash
-$ python3 -m venv venv
-```
-
-Start the virtual enviornment
-
-```bash
-$ source venv/bin/activate
-```
-
-Install dependencies
-```bash
-$ pip install -r requirements.txt
-```
-
-### **Load a Prompt**
 ```python
-import yaml
+from poml import PromptLoader
 
-# Load a specific prompt
-with open("prompts/paraphraser_prompt.yaml", "r") as file:
-    prompt_data = yaml.safe_load(file)
+# Load a prompt
+loader = PromptLoader("poml/prompts/idea_explainer.poml")
 
-# Access the full prompt
-print(prompt_data["full_prompt"])
+# Execute with parameters
+result = loader.execute({
+    "idea_title": "Quantum Computing",
+    "idea_description": "Using quantum mechanics for computation..."
+})
 ```
 
-### **List All Prompts**
+### Using Workflow Chains
+
 ```python
-import os
+from poml import ChainExecutor
 
-# List all YAML files in the prompts directory
-directory = "prompts"
-prompts = [f for f in os.listdir(directory) if f.endswith(".yaml")]
-print("Available Prompts:", prompts)
+# Load research workflow
+executor = ChainExecutor("poml/chains/research_workflow.poml")
+
+# Run complete analysis pipeline
+results = executor.run({
+    "paper_url": "https://arxiv.org/...",
+    "output_format": "full"
+})
 ```
 
-### **Combine Multiple Prompts**
+### Using Functions
+
 ```python
-def combine_prompts(files):
-    combined = {"full_prompts": []}
-    for file in files:
-        with open(file, "r") as f:
-            data = yaml.safe_load(f)
-            combined["full_prompts"].append(data["full_prompt"])
-    return combined
+from poml import FunctionLibrary
 
-# Combine prompts
-files_to_combine = ["prompts/paraphraser_prompt.yaml", "prompts/summarizer_prompt.yaml"]
-combined = combine_prompts(files_to_combine)
-for i, prompt in enumerate(combined["full_prompts"], start=1):
-    print(f"Prompt {i}:
-{prompt}
-")
+# Load text processing functions
+lib = FunctionLibrary("poml/functions/text_processing.poml")
+
+# Use specific function
+summary = lib.summarizeText(text, target_length=100, style="executive")
 ```
 
+## POML Format
+
+Each POML file follows this structure:
+
+```yaml
+---
+name: Prompt Name
+description: What this prompt does
+version: 1.0.0
+author: Author Name
+tags: [tag1, tag2]
+model:
+  provider: openai
+  name: gpt-4
+  temperature: 0.7
 ---
 
-## **Contributing**
+# Main Prompt Content
 
-1. Fork the repository and create a new branch.
-2. Add or modify prompts in the `prompts/` directory.
-3. Update the `index.yaml` file to include your changes.
-4. Submit a pull request with a clear description of your changes.
+## Input Parameters
+@param param1 type required "description"
 
----
+## Instructions
+[Prompt instructions here]
 
-## **License**
+## Output Format
+[Expected output format]
+```
 
-This repository is open-source and available under the [MIT License](LICENSE).
+## Integration
 
----
+### Azure AI Studio
+```python
+from azure.ai.studio import PromptFlow
+flow = PromptFlow.from_poml("poml/prompts/meeting_summary.poml")
+```
 
-## **Contact**
+### Semantic Kernel
+```python
+from semantic_kernel import Kernel
+kernel = Kernel()
+kernel.import_poml_directory("poml/prompts/")
+```
 
-If you have questions or suggestions, feel free to reach out to the repository maintainer, Alex Thorpe.
+### LangChain
+```python
+from langchain import POMLPromptTemplate
+template = POMLPromptTemplate.from_file("poml/prompts/ghost_writer.poml")
+```
+
+## Configuration
+
+The main configuration file `poml/poml.config.json` contains:
+- Library metadata
+- Default model settings
+- Category definitions
+- Validation rules
+- Export/import settings
+
+## Contributing
+
+1. Use the base template at `poml/templates/base_prompt.poml`
+2. Follow POML formatting standards
+3. Include comprehensive examples
+4. Add appropriate tags and categories
+5. Test with multiple model providers
+
+## Migration from Legacy
+
+The original YAML-based prompts are preserved in the `legacy/` folder. To convert legacy prompts to POML:
+
+```python
+from poml import LegacyConverter
+converter = LegacyConverter()
+converter.convert_yaml_to_poml("legacy/prompts/old_prompt.yaml", "poml/prompts/")
+```
+
+## License
+
+MIT License - See LICENSE file for details
+
+## Support
+
+For questions or issues:
+- Open an issue on GitHub
+- Check documentation in each POML file
+- Refer to examples in templates folder
+
+## Roadmap
+
+- [ ] Add more workflow chains
+- [ ] Implement prompt testing framework
+- [ ] Create web-based prompt editor
+- [ ] Add prompt performance metrics
+- [ ] Build prompt recommendation system

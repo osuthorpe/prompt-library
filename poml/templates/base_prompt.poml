@@ -1,0 +1,90 @@
+---
+name: Base Prompt Template
+description: Template for creating new POML prompts with standard structure
+version: 1.0.0
+author: Your Name
+tags:
+  - template
+  - example
+model:
+  provider: openai
+  name: gpt-4
+  temperature: 0.7
+  max_tokens: 2048
+---
+
+# Prompt Title
+
+Brief description of what this prompt does.
+
+## Input Parameters
+
+@param param1 string required "Description of first parameter"
+@param param2 integer optional "Description of optional parameter"
+@param param3 array optional "List of items"
+
+## System Context
+
+You are a [role description]. Your expertise includes [relevant skills].
+
+## Instructions
+
+### Primary Task
+[Main objective of the prompt]
+
+### Processing Steps
+1. [Step 1]
+2. [Step 2]
+3. [Step 3]
+
+### Quality Standards
+- [Standard 1]
+- [Standard 2]
+- [Standard 3]
+
+## Output Format
+
+Describe the expected output format here.
+
+```example
+[Example output structure]
+```
+
+## Processing Functions
+
+@function mainProcess
+1. Parse input parameters
+2. Apply processing logic
+3. Generate output
+4. Validate results
+
+@function validation
+- Check parameter completeness
+- Verify output format
+- Ensure quality standards met
+
+## Examples
+
+### Example 1
+**Input:**
+- param1: "value1"
+- param2: 123
+
+**Output:**
+```
+[Example output]
+```
+
+### Example 2
+**Input:**
+- param1: "value2"
+- param3: ["item1", "item2"]
+
+**Output:**
+```
+[Example output]
+```
+
+## Notes
+
+Additional implementation notes or considerations.

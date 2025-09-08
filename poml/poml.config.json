@@ -1,0 +1,79 @@
+{
+  "library": {
+    "name": "POML Prompt Library",
+    "version": "1.0.0",
+    "description": "Microsoft POML-formatted prompt library for AI applications",
+    "author": "Alex Thorpe",
+    "created": "2025-01-05",
+    "license": "MIT"
+  },
+  "structure": {
+    "prompts": "./prompts",
+    "templates": "./templates",
+    "functions": "./functions",
+    "chains": "./chains",
+    "configs": "./configs"
+  },
+  "defaults": {
+    "model": {
+      "provider": "openai",
+      "name": "gpt-4",
+      "temperature": 0.7,
+      "max_tokens": 2048
+    },
+    "validation": {
+      "require_version": true,
+      "require_author": true,
+      "require_description": true,
+      "validate_parameters": true
+    }
+  },
+  "categories": [
+    "release-notes",
+    "text-processing",
+    "content-creation",
+    "research",
+    "analysis",
+    "documentation",
+    "meeting-notes",
+    "automation"
+  ],
+  "tags": {
+    "domains": [
+      "jira",
+      "github",
+      "documentation",
+      "research",
+      "business"
+    ],
+    "capabilities": [
+      "summarization",
+      "generation",
+      "analysis",
+      "translation",
+      "extraction"
+    ],
+    "techniques": [
+      "chain-of-thought",
+      "few-shot",
+      "zero-shot",
+      "structured-output"
+    ]
+  },
+  "metadata": {
+    "format": "POML",
+    "specification": "1.0",
+    "compatible_with": [
+      "Azure AI Studio",
+      "Semantic Kernel",
+      "LangChain",
+      "Prompt Flow"
+    ]
+  },
+  "sharing": {
+    "export_formats": ["json", "yaml", "poml"],
+    "import_formats": ["json", "yaml", "poml"],
+    "package_registry": "https://github.com/alexthorpe/prompt-library",
+    "sharing_enabled": true
+  }
+}

@@ -1,0 +1,168 @@
+---
+name: Text Processing Functions
+description: Reusable text processing functions for POML prompts
+version: 1.0.0
+author: Alex Thorpe
+type: function-library
+---
+
+# Text Processing Function Library
+
+Common text processing functions that can be imported and used across POML prompts.
+
+## Functions
+
+@function extractKeyPoints
+/**
+ * Extracts key points from text
+ * @param text - Input text to analyze
+ * @param max_points - Maximum number of points to extract
+ * @returns Array of key points
+ */
+1. Identify main topics and themes
+2. Rank by importance and relevance
+3. Extract top N points
+4. Format as bullet list
+5. Return structured array
+
+@function summarizeText
+/**
+ * Creates concise summary of text
+ * @param text - Input text to summarize
+ * @param target_length - Target summary length in words
+ * @param style - Summary style (executive, technical, casual)
+ * @returns Summarized text
+ */
+1. Analyze text structure and content
+2. Identify critical information
+3. Remove redundancy
+4. Condense to target length
+5. Maintain coherence and flow
+6. Apply specified style
+
+@function categorizeContent
+/**
+ * Categorizes text into predefined categories
+ * @param text - Text to categorize
+ * @param categories - Available categories
+ * @param multi_label - Allow multiple categories
+ * @returns Category assignments with confidence scores
+ */
+1. Parse text for category indicators
+2. Match against category definitions
+3. Calculate relevance scores
+4. Apply threshold filtering
+5. Return top matches or single best match
+
+@function extractEntities
+/**
+ * Extracts named entities from text
+ * @param text - Input text
+ * @param entity_types - Types to extract (person, org, location, etc.)
+ * @returns Map of entity types to extracted values
+ */
+1. Tokenize input text
+2. Identify entity boundaries
+3. Classify entity types
+4. Resolve entity references
+5. Return structured entity map
+
+@function sentimentAnalysis
+/**
+ * Analyzes sentiment of text
+ * @param text - Text to analyze
+ * @param granularity - Analysis level (document, sentence, aspect)
+ * @returns Sentiment scores and classifications
+ */
+1. Preprocess text
+2. Identify sentiment indicators
+3. Calculate polarity scores
+4. Determine overall sentiment
+5. Extract aspect-level sentiments if requested
+
+@function cleanText
+/**
+ * Cleans and normalizes text
+ * @param text - Raw text input
+ * @param options - Cleaning options (lowercase, remove_punctuation, etc.)
+ * @returns Cleaned text
+ */
+1. Apply case normalization
+2. Remove or normalize punctuation
+3. Fix spacing issues
+4. Remove special characters if specified
+5. Standardize format
+
+@function compareTexts
+/**
+ * Compares two texts for similarity
+ * @param text1 - First text
+ * @param text2 - Second text
+ * @param method - Comparison method (semantic, lexical, structural)
+ * @returns Similarity score and differences
+ */
+1. Normalize both texts
+2. Extract comparison features
+3. Calculate similarity metrics
+4. Identify key differences
+5. Return comparison results
+
+@function generateVariations
+/**
+ * Creates variations of input text
+ * @param text - Original text
+ * @param num_variations - Number of variations to generate
+ * @param diversity_level - How different variations should be (0-1)
+ * @returns Array of text variations
+ */
+1. Parse original structure
+2. Identify variable elements
+3. Generate alternatives
+4. Apply diversity constraints
+5. Validate coherence
+6. Return variation array
+
+## Usage Example
+
+```poml
+---
+name: Document Processor
+imports:
+  - functions/text_processing
+---
+
+# Document Analysis Prompt
+
+Process the document using imported functions:
+
+@use extractKeyPoints(document, 5)
+@use summarizeText(document, 100, "executive")
+@use categorizeContent(document, categories, true)
+
+## Processing Pipeline
+
+1. Extract key points from document
+2. Generate executive summary
+3. Categorize into relevant topics
+4. Return structured analysis
+```
+
+## Function Composition
+
+Functions can be composed for complex operations:
+
+@function analyzeDocument
+@compose [
+  cleanText,
+  extractEntities,
+  sentimentAnalysis,
+  summarizeText
+]
+
+## Error Handling
+
+All functions include standard error handling:
+- Invalid input validation
+- Graceful degradation
+- Error message generation
+- Fallback strategies

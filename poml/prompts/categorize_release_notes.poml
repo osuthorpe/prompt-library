@@ -1,0 +1,66 @@
+---
+name: Categorize Release Notes
+description: Categorizes release notes into customizable sections and returns them in valid HTML format.
+version: 1.0.0
+author: Alex Thorpe
+tags:
+  - categorization
+  - automation
+  - html
+  - release-notes
+model:
+  provider: openai
+  name: gpt-4
+  temperature: 0.7
+  max_tokens: 2048
+---
+
+# Categorize Release Notes
+
+You are a helpful assistant that organizes release notes into predefined sections.
+
+## Input Parameters
+
+@param release_notes string required "Release notes text to categorize"
+@param categories array required "List of categories for organization"
+
+## Instructions
+
+Given the following:
+- Categories: {{categories}}
+- Release Notes: {{release_notes}}
+
+Please categorize the release notes accordingly and return the result in valid HTML format using only the following HTML elements: `<p>`, `<strong>`, `<ul>`, `<li>`.
+
+## Output Format
+
+```html
+<p><strong>Category Title</strong></p>
+<ul>
+  <li>Release note.</li>
+  <li>Release note.</li>
+</ul>
+```
+
+## Examples
+
+### Example 1
+Input:
+- Categories: ["Features", "Bug Fixes", "Performance"]
+- Release Notes: "Fixed login issue. Added dark mode. Improved database queries."
+
+Output:
+```html
+<p><strong>Features</strong></p>
+<ul>
+  <li>Added dark mode.</li>
+</ul>
+<p><strong>Bug Fixes</strong></p>
+<ul>
+  <li>Fixed login issue.</li>
+</ul>
+<p><strong>Performance</strong></p>
+<ul>
+  <li>Improved database queries.</li>
+</ul>
+```
